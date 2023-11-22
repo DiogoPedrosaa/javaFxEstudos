@@ -12,7 +12,6 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.VBox;
-import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
@@ -44,7 +43,7 @@ public class MainController implements Initializable {
 
     @FXML
     public void onMenuItemAboutAction() {
-        loadView("com/example/javafxnelio/About.fxml");
+        loadView("src/main/resources/com/example/javafxnelio/About.fxml");
 
     }
 
@@ -52,18 +51,18 @@ public class MainController implements Initializable {
     private void loadView(String absoluteName){
         try{
             FXMLLoader loader = new FXMLLoader(getClass().getResource(absoluteName));
-
             VBox newVbox = loader.load();
+
             Scene scene = Main.getScene();
 
-            VBox mainVbox = (VBox) ((ScrollPane) scene.getRoot()).getContent();
+            VBox mainVbox = (VBox) ((ScrollPane)scene.getRoot()).getContent();
             Node mainMenu = mainVbox.getChildren().get(0);
 
             mainVbox.getChildren().clear();
             mainVbox.getChildren().add(mainMenu);
             mainVbox.getChildren().addAll(newVbox.getChildren());
         } catch (IOException e){
-            Alerts.showAlert("IO Expection", "Error Loading View", e.getMessage(), Alert.AlertType.ERROR);
+            Alerts.showAlert("IO Exception", "Error Loading View", e.getMessage(), Alert.AlertType.ERROR);
         }
 
     }

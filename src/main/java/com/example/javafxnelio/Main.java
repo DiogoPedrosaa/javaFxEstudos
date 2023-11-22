@@ -13,20 +13,25 @@ public class Main extends Application {
 
     private static Scene scene;
     @Override
-    public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("MainView.fxml"));
+    public void start(Stage stage)  {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("MainView.fxml"));
+            ScrollPane scrollPane;
+
+            scrollPane = fxmlLoader.load();
 
 
-        ScrollPane scrollPane = fxmlLoader.load();
+            scrollPane.setFitToHeight(true);
+            scrollPane.setFitToWidth(true);
 
-        scrollPane.setFitToHeight(true);
-        scrollPane.setFitToWidth(true);
+            scene = new Scene(scrollPane, 650, 650);
 
-        Scene scene = new Scene(scrollPane, 650, 650);
-
-        stage.setTitle("Hello!");
-        stage.setScene(scene);
-        stage.show();
+            stage.setTitle("Hello!");
+            stage.setScene(scene);
+            stage.show();
+        }catch (IOException e){
+            e.printStackTrace();
+        }
         
 
 
